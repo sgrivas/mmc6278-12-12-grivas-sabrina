@@ -16,6 +16,10 @@ let wins = 0
 let losses = 0
 let currentWord
 
+const wordToGuessEl=document.getElementById('word-to-guess')
+const remainingGuessesEl=document.getElementById('remaining-guesses')
+const incorrectLettersEl=document.getElementById('incorrect-letters')
+
 class Word {
   constructor(word) {
     this.word = word
@@ -26,16 +30,42 @@ class Word {
   }
 
   // implement the guessLetter function:
-  // guessLetter(letter) {}
+  guessLetter(letter) {
+    if (this.word.includes(letter)) {
+        wordToGuessEl.textContent = this.displayWord.join("");
+    } else{
+      this.remainingGuesses-=1
+      remainingGuessesEl.textContent= this.remainingGuesses
+      this.incorrectLetters.push(letter);
+      incorrectLettersEl.textContent=this.incorrectLetters
+    }
+  }
 
   // implement the updateScreen function:
-  // updateScreen() {}
+  updateScreen() {
+    wordToGuessEl.textContent = this.displayWord
+    remainingGuessesEl.textContent= this.remainingGuesses
+  }
 
   // implement the isGameOver function:
-  // isGameOver() {}
+  isGameOver() {
+    if (this.displayWord===this.word || this.remainingGuesses <=0) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   // implement the getWinOrLoss function:
-  // getWinOrLoss() {}
+  getWinOrLoss() {
+    if (this.displayWord===this.word && this.remainingGuesses > 0) {
+      return 'win'
+    } else if (!(this.displayWord===this.word) && this.remainingGuesses <= 0){
+      return 'loss'
+    } else {
+      return null
+    }
+  }
 }
 
 function newGame() {
@@ -51,6 +81,7 @@ document.onkeyup = function(e) {
 
   // pass in guessed letter to word obj
   currentWord.guessLetter(pressedKey)
+  
   // allow word obj to update screen
   currentWord.updateScreen()
 
