@@ -32,7 +32,9 @@ class Word {
   // implement the guessLetter function:
   guessLetter(letter) {
     if (this.word.includes(letter)) {
-        wordToGuessEl.textContent = this.displayWord.join("");
+      const foundLetter = this.word.indexOf(letter);
+      this.displayWord[foundLetter] = letter
+      wordToGuessEl.textContent=this.displayWord
     } else{
       this.remainingGuesses-=1
       remainingGuessesEl.textContent= this.remainingGuesses
