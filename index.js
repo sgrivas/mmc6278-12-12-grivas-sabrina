@@ -32,14 +32,15 @@ class Word {
   guessLetter(letter) {
     const wordToGuessEl=document.getElementById('word-to-guess')
     if (this.word.includes(letter)) {
+      this.correctLetters.push(letter)
       let newDisplayWord =  this.displayWord.split('')
       for (let index = 0; index < this.word.length; index++) {
         if (letter === this.word[index]) {
           newDisplayWord[index] = letter
         }
       }
-      wordToGuessEl.textContent = newDisplayWord.join('')
-      debugger
+      this.displayWord=newDisplayWord.join('')
+      wordToGuessEl.textContent = this.displayWord
     } else{
       this.remainingGuesses-=1
       this.incorrectLetters.push(letter);
@@ -49,10 +50,9 @@ class Word {
   // implement the updateScreen function:
   updateScreen() {
     const wordToGuessEl=document.getElementById('word-to-guess')
-    wordToGuessEl.textContent = this.displayWord
     remainingGuessesEl.textContent= this.remainingGuesses
     incorrectLettersEl.textContent=this.incorrectLetters
-    remainingGuessesEl.textContent= this.remainingGuesses
+    wordToGuessEl.textContent = this.displayWord
   }
 
   // implement the isGameOver function:
