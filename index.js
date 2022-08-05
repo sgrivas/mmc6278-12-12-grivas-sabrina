@@ -42,9 +42,7 @@ class Word {
       debugger
     } else{
       this.remainingGuesses-=1
-      remainingGuessesEl.textContent= this.remainingGuesses
       this.incorrectLetters.push(letter);
-      incorrectLettersEl.textContent=this.incorrectLetters
     }
   }
 
@@ -52,6 +50,8 @@ class Word {
   updateScreen() {
     const wordToGuessEl=document.getElementById('word-to-guess')
     wordToGuessEl.textContent = this.displayWord
+    remainingGuessesEl.textContent= this.remainingGuesses
+    incorrectLettersEl.textContent=this.incorrectLetters
     remainingGuessesEl.textContent= this.remainingGuesses
   }
 
