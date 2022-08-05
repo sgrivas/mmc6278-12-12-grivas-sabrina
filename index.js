@@ -16,7 +16,6 @@ let wins = 0
 let losses = 0
 let currentWord
 
-const wordToGuessEl=document.getElementById('word-to-guess')
 const remainingGuessesEl=document.getElementById('remaining-guesses')
 const incorrectLettersEl=document.getElementById('incorrect-letters')
 
@@ -31,17 +30,16 @@ class Word {
 
   // implement the guessLetter function:
   guessLetter(letter) {
+    const wordToGuessEl=document.getElementById('word-to-guess')
     if (this.word.includes(letter)) {
+      let newDisplayWord =  this.displayWord.split('')
       for (let index = 0; index < this.word.length; index++) {
         if (letter === this.word[index]) {
-          this.displayWord[index] = letter
+          newDisplayWord[index] = letter
         }
-      wordToGuessEl.textContent=this.displayWord  
       }
-      // const foundLetter = this.word.indexOf(letter);
-      // console.log(foundLetter);
-      // this.displayWord[foundLetter] = letter
-      // wordToGuessEl.textContent=this.displayWord
+      wordToGuessEl.textContent = newDisplayWord.join('')
+      debugger
     } else{
       this.remainingGuesses-=1
       remainingGuessesEl.textContent= this.remainingGuesses
@@ -52,6 +50,7 @@ class Word {
 
   // implement the updateScreen function:
   updateScreen() {
+    const wordToGuessEl=document.getElementById('word-to-guess')
     wordToGuessEl.textContent = this.displayWord
     remainingGuessesEl.textContent= this.remainingGuesses
   }
