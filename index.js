@@ -40,7 +40,6 @@ class Word {
         }
       }
       this.displayWord=newDisplayWord.join('')
-      wordToGuessEl.textContent = this.displayWord
     } else{
       this.remainingGuesses-=1
       this.incorrectLetters.push(letter);
